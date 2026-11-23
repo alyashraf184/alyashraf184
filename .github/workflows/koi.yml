@@ -17,28 +17,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-
       - uses: yalongwastaken/git-koi@v1
         with:
           body: white
-          output-dir: koi-white
-
-      - uses: yalongwastaken/git-koi@v1
-        with:
-          body: gold
-          output-dir: koi-gold
-
-      - uses: yalongwastaken/git-koi@v1
-        with:
-          body: asagi
-          output-dir: koi-asagi
-
+          output-dir: koi
       - name: Commit the koi if it changed
         shell: bash
         run: |
-          git add koi-white/koi.gif koi-gold/koi.gif koi-asagi/koi.gif
+          git add koi/koi.gif
           if git diff --cached --quiet; then
-            echo "The koi are unchanged; nothing to commit."
+            echo "The koi is unchanged; nothing to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
